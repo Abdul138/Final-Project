@@ -6,13 +6,13 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 
 
-
-
 //Global Variables
 //Paper Variables
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
 //Circle Drawing Variables
 float drawingDiameter;
+//
+Boolean draw = false;
 //
 void setup() {
   //Display Checker
@@ -29,16 +29,22 @@ void setup() {
   //
   rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //
-  
 } //End setup
 //
 void draw () {
-  ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter); // Circle Drawing tool
-  
+  if (draw == true && mouseX> drawingSurfaceX  && mouseX <drawingSurfaceX + drawingSurfaceWidth && mouseY> drawingSurfaceY && mouseY < drawingSurfaceY +drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter); // Circle Drawing tool
 }//End draw
 //
 void keyPressed() {
 }//End keyPressed (Not Needed
 //
 void mousePressed() {
+  if (mouseX> drawingSurfaceX  && mouseX <drawingSurfaceX + drawingSurfaceWidth && mouseY> drawingSurfaceY && mouseY < drawingSurfaceY +drawingSurfaceHeight ) {
+    if (draw == true){
+      draw = false;
+    } else{
+      draw = true;
+    }
+  }
+  //End drawing tool
 }// End mousePressed
