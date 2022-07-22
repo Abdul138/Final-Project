@@ -32,7 +32,8 @@ void setup() {
 } //End setup
 //
 void draw () {
-  if (draw == true && mouseX> drawingSurfaceX  && mouseX <drawingSurfaceX + drawingSurfaceWidth && mouseY> drawingSurfaceY && mouseY < drawingSurfaceY +drawingSurfaceHeight) ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter); // Circle Drawing tool
+  // ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter); // Circle Drawing tool
+  if (draw == true && mouseX> drawingSurfaceX  && mouseX <drawingSurfaceX + drawingSurfaceWidth && mouseY> drawingSurfaceY && mouseY < drawingSurfaceY +drawingSurfaceHeight) line (mouseX, mouseY, pmouseX, pmouseY); 
 }//End draw
 //
 void keyPressed() {
