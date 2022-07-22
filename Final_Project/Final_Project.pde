@@ -9,6 +9,10 @@ import ddf.minim.ugens.*;
 
 
 //Global Variables
+//Paper Variables
+float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
+//Circle Drawing Variables
+float drawingDiameter;
 //
 void setup() {
   //Display Checker
@@ -17,13 +21,20 @@ void setup() {
   size (500, 600); //Landscape (Portrait or Square)
   //
   //Population
+  drawingSurfaceX = width*0; // Should use appWidth and appHeight Instead
+  drawingSurfaceY = height*0;
+  drawingSurfaceWidth =  width*3/4; 
+  drawingSurfaceHeight = height*4/5;
+  drawingDiameter = width*1/100;
   //
-  rect();
+  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
   //
   
 } //End setup
 //
 void draw () {
+  ellipse(mouseX, mouseY, drawingDiameter, drawingDiameter); // Circle Drawing tool
+  
 }//End draw
 //
 void keyPressed() {
