@@ -5,7 +5,7 @@ To Do List
   - []  Circle Stamping tool
   - [] Eraser (make the eraser the same color as background color, remove sroke())
   - [] <del> AI to draw a Picaso all by itself
-  - [] Color Tool
+  - [x] Color Tools
   - [] Different pen tool
   - [] Change how thick or thin
   - [x] Tools to choose colors
