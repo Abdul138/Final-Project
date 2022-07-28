@@ -12,7 +12,9 @@ Minim minim;
 AudioPlayer song1;
 AudioMetaData songMetaDate1;
 AudioPlayer soundEffect;
+AudioPlayer Effect;
 AudioMetaData soundMetaDateEffect;
+AudioMetaData songMetaDate2;
 boolean music = false;
 
 //Paper Variables
@@ -49,6 +51,8 @@ String plusPen = "+ Pen size", minusPen = "- Pen size";
 String penStyle = "Switch to Line Coloring";
 String switchImage = ("Click to switch image");
 Boolean draw = false;
+Boolean isFlower = false, isSpiderman = false;
+
 color colorChoice;
 color grey = #837A83 ;
 color eraserColor = #00EAC9;
@@ -56,6 +60,8 @@ color jukeboxColor = #A7CAFF;
 color minusSize =#AAEA66;
 color plusSize = #5985A0;
 color drawingColor = #E3C485;
+color imageColor = #358639;
+
 //
 float colorX, colorY, colorWidth, colorHeight;
 //String colorChoice = "Colors";
@@ -80,7 +86,9 @@ void setup() {
   song1 = minim.loadFile("song1.mp3");
   songMetaDate1 = song1.getMetaData();
   
-  soundEffect = minim.loadFile("soundEffect.mp3");
+  //minim = new Minim(this);
+  //Effect = minim.loadFile("Effect.mp3");
+  //songMetaDate2 = Effect.getMetaData();
   
   
   
@@ -267,7 +275,7 @@ void draw () {
   fill(black);   
   text(blueColor, blueColorX, blueColorY, blueColorWidth, blueColorHeight );
   fill(resetWhite);
-
+  //Effect.play();
   if ( mouseX>blackColorX && mouseX<blackColorX+blackColorWidth && mouseY>blackColorY && mouseY<blackColorY+blackColorHeight ) {
     buttonFill = black;
     fill(buttonFill);
@@ -429,7 +437,16 @@ void draw () {
   text(penStyle, drawingToolX, drawingToolY, drawingToolWidth, drawingToolHeight);
   fill(resetWhite);
   
+  if (mouseX>choseImageX && mouseX<choseImageX+choseImageWidth && mouseY>choseImageY && mouseY<choseImageY+choseImageHeight ) {
+    buttonFill = imageColor;
+  } else {
+    buttonFill = resetWhite;
+  }
+  fill(buttonFill); 
   rect(choseImageX, choseImageY, choseImageWidth, choseImageHeight);
+  fill(black);
+  text(switchImage, choseImageX, choseImageY, choseImageWidth, choseImageHeight);
+  fill(resetWhite);
   //
   //if ( mouseX>jukeboxX && mouseX<jukeboxX+jukeboxWidth && mouseY>jukeboxY && mouseY<jukeboxY+jukeboxHeight){
     if (isJukebox == true){
@@ -493,7 +510,7 @@ void mousePressed() {
   }
   // redColorX, redColorY, redColorWidth, redColorHeight 
   if (mouseX > redColorX  && mouseX <redColorX + redColorWidth && mouseY> redColorY && mouseY < redColorY + redColorHeight ) {
-    soundEffect.play();
+   
     isEraser = false;
     colorChoice = red;
   }
@@ -597,5 +614,20 @@ void mousePressed() {
 
      }
   }
+  //choseImageX, choseImageY, choseImageWidth, choseImageHeight
+ 
+  if ( mouseX>choseImageX && mouseX<choseImageX+choseImageWidth && mouseY>choseImageY && mouseY<choseImageY+choseImageHeight ) { 
+    if (isFlower == false){
+     noStroke();
+     image(flower, drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+     isFlower = true;
+     isSpiderman = true;
+    }
+    else if (isSpiderman == true){
+      image(spiderman, drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+      isFlower = false;
+    }
+  }
+  
   //End drawing tool
 }// End mousePressed
