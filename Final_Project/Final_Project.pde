@@ -82,12 +82,13 @@ int penSize = 1;
 //
 void setup() {
   background(grey);
+  size (600, 700); //Landscape (Portrait or Square)
   minim = new Minim(this);
   song1 = minim.loadFile("song1.mp3");
   songMetaDate1 = song1.getMetaData();
   
   //minim = new Minim(this);
-  //Effect = minim.loadFile("Effect.mp3");
+  //Effect = minim.loadFile("effect.mp3");
   //songMetaDate2 = Effect.getMetaData();
   
   
@@ -95,7 +96,29 @@ void setup() {
   //Display Checker
   //Display Oreintation Checker
   //Display and CANVAS Checker
-  size (600, 700); //Landscape (Portrait or Square)
+  
+  
+  int appWidth = width;
+  int appHeight = height;
+  if ( width > displayWidth || height > displayHeight ) { //CANVAS in Display Checker
+    //CANVAS Too Big
+    appWidth = displayWidth;
+    appHeight = displayHeight;
+    println("CANVAS needed to be readjusted to fit on your monitor.");
+  } else {
+    println("CANVAS is Good to go on your display.");
+  }//End CANVAS in Display Checker
+  //Display Orientation
+  String ls="Landscape or Square", p="portraint", DO="Display Orientation:", instruct="Bru, turn your phun";
+  String orientation = ( appWidth>=appHeight ) ? ls : p; //Ternary Operator, repeats the IF-Else structure to populate a variable
+  println( DO, orientation );
+  if ( orientation==ls ) { //Test for chosen display orientation
+    println("Good to Go");
+  } else {
+    appWidth *= 0; //asignment operator, works like appWidth=appWidth*0
+    appHeight *= 0;
+    println(instruct);
+  }
   //
   population();
   preload();
@@ -443,6 +466,10 @@ void mousePressed() {
   if ( mouseX>playX && mouseX<playX+playWidth && mouseY>playY && mouseY<playY+playHeight ) {
     if (isJukebox == true){
        song1.play();
+       rect(titleX, titleY, titleWidth, titleHeight);
+       fill(black);
+       text(songMetaDate1.title(), titleX, titleY, titleWidth, titleHeight);
+       fill(resetWhite);  
     }
   }
   //pauseX, pauseY, pauseWidth, pauseHeight

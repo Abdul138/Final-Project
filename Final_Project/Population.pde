@@ -1,15 +1,19 @@
+float titleX, titleY, titleWidth, titleHeight;
 void population() {
   //Population
   int flowerWidth = 225; 
-  int floweHeight = 225;     
-  if ( flowerWidth >= floweHeight ) { //Image Dimension Comparison
+  int flowerHeight = 225;   
+  int spidermanWidth = 207; 
+  int spidermanHeight = 243;   
+  
+  if ( flowerWidth >= flowerHeight ) { //Image Dimension Comparison
     //True if Landscape or Square
     imageLargerDimension = flowerWidth;
-    imageSmallerDimension = floweHeight;
+    imageSmallerDimension = flowerHeight;
     widthLarger = true;
   } else {
     //False if Portrait
-    imageLargerDimension = floweHeight;
+    imageLargerDimension = flowerHeight;
     imageSmallerDimension = flowerWidth;
     heightLarger = true;
   }//End Image Dimension Comparison
@@ -21,6 +25,27 @@ void population() {
   if ( widthLarger == true ) imageHeightRatio = imageSmallerDimension / imageLargerDimension;
   if ( heightLarger == true ) imageWidthRatio = imageSmallerDimension / imageLargerDimension;
   if ( heightLarger == true ) imageHeightRatio = imageLargerDimension / imageLargerDimension;
+  
+  
+  if ( spidermanWidth >= spidermanHeight ) { //Image Dimension Comparison
+    //True if Landscape or Square
+    imageLargerDimension = spidermanWidth;
+    imageSmallerDimension = spidermanHeight;
+    widthLarger = true;
+  } else {
+    //False if Portrait
+    imageLargerDimension = spidermanHeight;
+    imageSmallerDimension = spidermanWidth;
+    heightLarger = true;
+  }//End Image Dimension Comparison
+ // println(imageSmallerDimension, imageLargerDimension, widthLarger, heightLarger); //Verify variables details
+  //Aspect Ratio
+  //Note: single line IFs can be summarized into IF-ELSE or IF-ElseIF-Else
+  //Computer chooses which formulae to execute
+  if ( widthLarger2 == true ) imageWidthRatio2 = imageLargerDimension2 / imageLargerDimension2;
+  if ( widthLarger2 == true ) imageHeightRatio2 = imageSmallerDimension2 / imageLargerDimension2;
+  if ( heightLarger2 == true ) imageWidthRatio2 = imageSmallerDimension2 / imageLargerDimension2;
+  if ( heightLarger2 == true ) imageHeightRatio2 = imageLargerDimension2 / imageLargerDimension2;
   
   drawingSurfaceX = width*0; // Should use appWidth and appHeight Instead
   drawingSurfaceY = height*0;
@@ -130,6 +155,10 @@ void population() {
   forwardWidth = width*2/16-5 ;
   forwardHeight = height*1/18;
   
+  titleX = width*13/16 ;
+  titleY = height *9/10 - 35;
+  titleWidth =width*3/16 - 25 ;
+  titleHeight = height*1/18;
   stopX = width*13/16 ;
   stopY = height *8.5/10 - 35;
   stopWidth = width*3/16 - 25 ;
