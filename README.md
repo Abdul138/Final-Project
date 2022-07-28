@@ -1,12 +1,13 @@
 # Final Project
 
 To Do List
-  - [] Line Drawing Too;
-  - []  Circle Stamping tool
-  - [] Eraser (make the eraser the same color as background color, remove sroke())
-  - [] <del> AI to draw a Picaso all by itself
+  - [x] Line Drawing Too;
+  - [x]  Circle Stamping tool
+  - [x] Eraser (make the eraser the same color as background color, remove sroke())
+  - <del> AI to draw a Picaso all by itself
   - [x] Color Tools
-  - [] Different pen tool
-  - [] Change how thick or thin
+  - [x] Different pen tool
+  - [x] Change how thick or thin
   - [x] Tools to choose colors
-  - [] Add pictures
+  - [x] Add pictures
+  - [] <del>Choose which pictures 
