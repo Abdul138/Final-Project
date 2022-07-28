@@ -97,130 +97,7 @@ void setup() {
   //Display and CANVAS Checker
   size (600, 700); //Landscape (Portrait or Square)
   //
-  //Population
-  drawingSurfaceX = width*0; // Should use appWidth and appHeight Instead
-  drawingSurfaceY = height*0;
-  drawingSurfaceWidth =  width*3/4; 
-  drawingSurfaceHeight = height*4/5;
-  drawingDiameter = width*1/100;
-  //
-  rect(drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
-  //
-  //colorX = width*4/5;
-  //colorY = height*1/10; 
-  //colorWidth = width * 1/6;
-  //colorHeight = height* 1/15;
-  //
-  //colorTemplateX = width*3/5 ;
-  //colorTemplateY = height*1/12;
-  //colorTemplateWidth = width*1/4 ;
-  //colorTemplateHeight = height* 1/12 ;
-
-  redColorX = width*12/16 +3 ;
-  redColorY = height*1/10 ;
-  redColorWidth = width*2/16-5 ;
-  redColorHeight = height*1/15;
-  //
-
-  yellowColorX = width*14/16+2;
-  yellowColorY = height*1/10;
-  yellowColorWidth = width*2/16-5 ;
-  yellowColorHeight = height*1/15 ;
-  //
-  greenColorX = width*12/16 +3;
-  greenColorY = height*2/10;
-  greenColorWidth = width*2/16-5;
-  greenColorHeight = height*1/15;
-  ////
-  blueColorX = width*14/16+2;
-  blueColorY = height*2/10;
-  blueColorWidth =width*2/16-5 ;
-  blueColorHeight = height*1/15;
-  //
-  blackColorX = width*12/16 +3 ;
-  blackColorY = height*3/10;
-  blackColorWidth = width*2/16-5 ;
-  blackColorHeight = height*1/15;
-  //
-  purpleColorX = width*14/16 +3 ;
-  purpleColorY = height*3/10;
-  purpleColorWidth = width*2/16-5 ;
-  purpleColorHeight = height*1/15;
-  //
-  eraserTemplateX = width*12/16 +3;
-  eraserTemplateY = height*4/10 ;
-  eraserTemplateWidth = width*4/16 - 8 ;
-  eraserTemplateHeight = height*1/15;
-  //
-  //
-  eraserX = mouseX;
-  eraserY = mouseY;
-  eraserDiameter = width*1/40 ;
-  
-  addDiameterX = width*12/16 +3 ;
-  addDiameterY = height*5/10 -20 ; 
-  addDiameterWidth = width*2/16-5 ; 
-  addDiameterHeight = height*1/18;
-  minusDiameterX = width*14/16 +3 ;
-  minusDiameterY = height*5/10 - 20; 
-  minusDiameterWidth = width*2/16-5 ; 
-  minusDiameterHeight = height*1/18;
-  //Line or elipse
-
-  //Jukeboxes
-  jukeboxX = width*12/16 +3;
-  jukeboxY = height*6/10 - 40;
-  jukeboxWidth = width*4/16 - 8 ;
-  jukeboxHeight = height*2/15;
-  //
-  //Play, stop, pause, fasforward, rewind
-  playX = width*12/16 +3;
-  playY = height *7/10 - 15;
-  playWidth = width*2/16-5 ;
-  playHeight = height*1/18;
-  
-  pauseX = width*14/16 +3;
-  pauseY = height *7/10 - 15;
-  pauseWidth = width*2/16-5 ;
-  pauseHeight = height*1/18;
-   
-  rewindX = width*12/16 +3;
-  rewindY = height *8/10 - 40;
-  rewindWidth = width*2/16-5 ;
-  rewindHeight = height*1/18;
-  
-  forwardX = width*14/16 +3;
-  forwardY = height *8/10 - 40;
-  forwardWidth = width*2/16-5 ;
-  forwardHeight = height*1/18;
-  
-  stopX = width*13/16 ;
-  stopY = height *8.5/10 - 35;
-  stopWidth = width*3/16 - 25 ;
-  stopHeight = height*1/18;
-  //
-  //Pensize + or -
-  plusPenSizeX = width*12/16 +3 ;
-  plusPenSizeY = height*1/25 -10;
-  plusPenSizeWidth = width*2/16-5 ;
-  plusPenSizeHeight = height*1/18;
-  //
-  minusPenSizeX = width*14/16+2 ;
-  minusPenSizeY = height*1/25 -10;
-  minusPenSizeWidth = width*2/16-5 ;
-  minusPenSizeHeight = height*1/18;
-  //
-  drawingToolX = width* 1/15 - 20 ; 
-  drawingToolY = height*4/5 + 10;
-  drawingToolWidth = width*1/4+5 ;
-  drawingToolHeight = height*1/16 ;
-  
-  
-  choseImageX =  width* 2/5 - 10 ;
-  choseImageY = height*4/5 + 10;
-  choseImageWidth = width*1/4+5;
-  choseImageHeight =  height*1/16;
-  
+  population();
   preload();
   //image(flower,drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight );
   
@@ -485,8 +362,8 @@ void draw () {
       textSize(12);
       text(clickStop,stopX, stopY, stopWidth, stopHeight);
       fill(resetWhite);
-    } else {
-      return;
+    } else if (isJukebox == false){
+      
     }
   //} 
   //ellipse(eraserX, eraserY, eraserDiameter, eraserDiameter);
@@ -570,26 +447,33 @@ void mousePressed() {
   }
   //pauseX, pauseY, pauseWidth, pauseHeight
   if ( mouseX>pauseX && mouseX<pauseX+pauseWidth && mouseY>pauseY && mouseY<pauseY+pauseHeight ) {
-    if (song1.isPlaying() ) {
-      song1.pause();
-    }     
+    if (isJukebox == true){
+      if (song1.isPlaying() ) {
+        song1.pause();
+      }     
+    }
   }
   //rewindX, rewindY, rewindWidth, 
   if ( mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY<rewindY+rewindHeight ) {
-    
+    if (isJukebox == true){
      song1.skip(-2000) ;
+    }
   }
   //
   if ( mouseX>forwardX && mouseX<forwardX+forwardWidth && mouseY>forwardY && mouseY<forwardY+forwardHeight ) {    
+    if (isJukebox == true){
      song1.skip(2000) ;
+    }
   }
   //stopX, stopY, stopWidth, stopHeight
   if ( mouseX>stopX && mouseX<stopX+stopWidth && mouseY>stopY && mouseY<stopY+stopHeight ) {    
-     if (song1.isPlaying() ) {
-      song1.pause();
-      song1.rewind();
-    } else { 
-      song1.rewind();
+    if (isJukebox == true){
+       if (song1.isPlaying() ) {
+        song1.pause();
+        song1.rewind();
+      } else { 
+        song1.rewind();
+      }
     }
   }
   //plusPenSizeX, plusPenSizeY, plusPenSizeWidth, plusPenSizeHeight
@@ -619,13 +503,16 @@ void mousePressed() {
   if ( mouseX>choseImageX && mouseX<choseImageX+choseImageWidth && mouseY>choseImageY && mouseY<choseImageY+choseImageHeight ) { 
     if (isFlower == false){
      noStroke();
-     image(flower, drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+      //drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight
+      //imageX, imageY, picWidthAdjusted, picHeightAdjusted
+     image(flower, imageX, imageY, picWidthAdjusted, picHeightAdjusted);
      isFlower = true;
      isSpiderman = true;
     }
     else if (isSpiderman == true){
-      image(spiderman, drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight);
+      image(spiderman, imageX, imageY, picWidthAdjusted, picHeightAdjusted);
       isFlower = false;
+      isSpiderman = false;
     }
   }
   
