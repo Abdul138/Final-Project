@@ -1,9 +1,12 @@
+import processing.sound.*;
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
+
 
 
 //Global Variables
@@ -16,6 +19,8 @@ AudioPlayer Effect;
 AudioMetaData soundMetaDateEffect;
 AudioMetaData songMetaDate2;
 boolean music = false;
+//
+SoundFile file;
 
 //Paper Variables
 float drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight;
@@ -90,6 +95,7 @@ void setup() {
   //minim = new Minim(this);
   //Effect = minim.loadFile("effect.mp3");
   //songMetaDate2 = Effect.getMetaData();
+  file = new SoundFile(this, "menu.wav");
   
   
   
@@ -410,36 +416,43 @@ void mousePressed() {
   }
   // redColorX, redColorY, redColorWidth, redColorHeight 
   if (mouseX > redColorX  && mouseX <redColorX + redColorWidth && mouseY> redColorY && mouseY < redColorY + redColorHeight ) {
-   
+    file.play();
     isEraser = false;
     colorChoice = red;
   }
   // Yellow Colors
   if (mouseX > yellowColorX  && mouseX <yellowColorX + yellowColorWidth && mouseY> yellowColorY && mouseY < yellowColorY + yellowColorHeight ) {
+    file.play();
     isEraser = false;
     colorChoice = yellow;
   }
   //greenColorX, greenColorY, greenColorWidth, greenColorHeight
   if (mouseX > greenColorX  && mouseX <greenColorX + greenColorWidth && mouseY> greenColorY && mouseY < greenColorY + greenColorHeight ) {
+    file.play();
     isEraser = false;
     colorChoice = green;
   }
   //blueColorX, blueColorY, blueColorWidth, blueColorHeight
   if (mouseX > blueColorX  && mouseX <blueColorX + blueColorWidth && mouseY> blueColorY && mouseY < blueColorY + blueColorHeight ) {
+    file.play();
+    isEraser = false;
     colorChoice = blue;
   }
   //
   if (mouseX > blackColorX  && mouseX <blackColorX + blackColorWidth && mouseY> blackColorY && mouseY < blackColorY + blackColorHeight ) {
+    file.play();
     isEraser = false;
     colorChoice = black;
   }
   //
   if (mouseX > purpleColorX  && mouseX < purpleColorX + purpleColorWidth && mouseY> purpleColorY && mouseY < purpleColorY + purpleColorHeight ) {
+    file.play();
     isEraser = false;
     colorChoice = purple;
   }
   //eraserTemplateX, eraserTemplateY, eraserTemplateWidth, eraserTemplateHeight
   if (mouseX > eraserTemplateX  && mouseX < eraserTemplateX + eraserTemplateWidth && mouseY > eraserTemplateY && mouseY < eraserTemplateY + eraserTemplateHeight ) {
+    file.play();
     if (isEraser == false) {
       isEraser = true;
       colorChoice = resetWhite;
@@ -449,14 +462,17 @@ void mousePressed() {
     colorChoice = resetWhite;
   }
    if ( mouseX>addDiameterX && mouseX<addDiameterX+addDiameterWidth && mouseY>addDiameterY && mouseY<addDiameterY+addDiameterHeight ) {
+     file.play();
     eraserDiameter = eraserDiameter + 1;
    }
 
   if ( mouseX>minusDiameterX && mouseX<minusDiameterX+minusDiameterWidth && mouseY>minusDiameterY && mouseY<minusDiameterY+minusDiameterHeight ) {
+     file.play();
      eraserDiameter = eraserDiameter - 1;
   }
   //jukeboxX, jukeboxY, jukeboxWidth, jukeboxHeight)
   if ( mouseX>jukeboxX && mouseX<jukeboxX+jukeboxWidth && mouseY>jukeboxY && mouseY<jukeboxY+jukeboxHeight && isJukebox == false ) {
+      file.play();
       isJukebox = true;
   }
   else if ( mouseX>jukeboxX && mouseX<jukeboxX+jukeboxWidth && mouseY>jukeboxY && mouseY<jukeboxY+jukeboxHeight && isJukebox == true ) {
@@ -464,6 +480,7 @@ void mousePressed() {
   }
   //rect(playX, playY, playWidth, playHeight);
   if ( mouseX>playX && mouseX<playX+playWidth && mouseY>playY && mouseY<playY+playHeight ) {
+    file.play();
     if (isJukebox == true){
        song1.play();
        rect(titleX, titleY, titleWidth, titleHeight);
@@ -504,13 +521,15 @@ void mousePressed() {
     }
   }
   //plusPenSizeX, plusPenSizeY, plusPenSizeWidth, plusPenSizeHeight
-  if ( mouseX>plusPenSizeX && mouseX<plusPenSizeX+plusPenSizeWidth && mouseY>plusPenSizeY && mouseY<plusPenSizeY+plusPenSizeHeight ) {    
+  if ( mouseX>plusPenSizeX && mouseX<plusPenSizeX+plusPenSizeWidth && mouseY>plusPenSizeY && mouseY<plusPenSizeY+plusPenSizeHeight ) {
+    file.play();
      penSize = penSize + 1;
      drawingDiameter = drawingDiameter + 1;
   }
   //minusPenSizeX, minusPenSizeY, minusPenSizeWidth, minusPenSizeHeight
   if ( mouseX>minusPenSizeX && mouseX<minusPenSizeX+minusPenSizeWidth && mouseY>minusPenSizeY && mouseY<minusPenSizeY+minusPenSizeHeight && penSize > 1 ) {    
-     penSize = penSize  - 1;
+     file.play();  
+      penSize = penSize  - 1;
      drawingDiameter = drawingDiameter - 1;
   }
   //drawingToolX, drawingToolY, drawingToolWidth, drawingToolHeight
@@ -528,6 +547,7 @@ void mousePressed() {
   //choseImageX, choseImageY, choseImageWidth, choseImageHeight
  
   if ( mouseX>choseImageX && mouseX<choseImageX+choseImageWidth && mouseY>choseImageY && mouseY<choseImageY+choseImageHeight ) { 
+    file.play();
     if (isFlower == false){
      noStroke();
       //drawingSurfaceX, drawingSurfaceY, drawingSurfaceWidth, drawingSurfaceHeight
